@@ -26,9 +26,6 @@ public class MergeIntervals {
     
     public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
         ArrayList<Interval>result=new ArrayList<Interval>();
-        
-        //convert ArrayList to array
-        Interval[]aIntervals=intervals.toArray(new Interval[0]);
         Comparator<Interval>comp=new Comparator<Interval>(){
           @Override
           public int compare(Interval o1, Interval o2){
@@ -37,25 +34,23 @@ public class MergeIntervals {
               return 0;
           }
         };
-        Arrays.sort(aIntervals,comp);//aIntervals will be in ascending order
+        Collections.sort(intervals,comp);//intervals will be in ascending order
         
         int index=0;
-        int n=aIntervals.length;
+        int n=intervals.size();
         while(index<n){
-            Interval current=aIntervals[index];
+            Interval current=intervals.get(index);
             int pointer=index+1;
             
-            while(pointer<n&&overlap(current,aIntervals[pointer])){
-                current=merge(current,aIntervals[pointer]);
+            while(pointer<n&&overlap(current,intervals.get(pointer))){
+                current=merge(current,intervals.get(pointer));
                 pointer++;
             }
             result.add(current);
             index=pointer;
         }
         return result;
-
-    }
-    
+   }
     boolean overlap(Interval o1, Interval o2){
         return (o1.start<=o2.end&&o2.start<=o1.end);
     }
