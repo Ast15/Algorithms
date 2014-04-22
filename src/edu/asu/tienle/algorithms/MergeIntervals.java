@@ -29,9 +29,7 @@ public class MergeIntervals {
         Comparator<Interval>comp=new Comparator<Interval>(){
           @Override
           public int compare(Interval o1, Interval o2){
-              if(o1.start<o2.start)return -1;
-              else if(o1.start>o2.start) return 1;
-              return 0;
+			  return o1.start-o2.start;
           }
         };
         Collections.sort(intervals,comp);//intervals will be in ascending order
