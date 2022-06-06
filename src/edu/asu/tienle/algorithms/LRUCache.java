@@ -12,7 +12,7 @@ set(key, value) - Set or insert the value if the key is not already present. Whe
 public class LRUCache {
     int capacity;
     HashMap<Integer,Node>map;
-    Node head,tail;//doubly linkedlist.
+    Node head,tail;//doubly linkedlist
     int size;
     
     public LRUCache(int capacity) {
